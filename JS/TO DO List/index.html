@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Task Box</title>
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f8f9fa;
+}
+
+.task-container {
+    text-align: center;
+}
+
+input {
+    padding: 8px;
+    margin-right: 8px;
+}
+
+button {
+    padding: 8px;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.delete-icon {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="task-container">
+        <h1>To Do List</h1>
+        <input type="text" id="taskInput" placeholder="Enter task name...">
+        <button onclick="addTask()">+</button>
+        <br><br>
+        <button onclick="displayTasks()">Display Tasks</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script >
+        function addTask() {
+    // Get the input value
+    var taskInput = document.getElementById("taskInput");
+    var taskText = taskInput.value;
+
+    // Clear the input field
+    taskInput.value = "";
+
+    // Create a new list item
+    var listItem = document.createElement("li");
+    listItem.className = "task-item";
+
+    // Create a span for the task text and append it to the list item
+    var taskSpan = document.createElement("span");
+    taskSpan.textContent = taskText;
+    listItem.appendChild(taskSpan);
+
+    // Create a delete icon image and append it to the list item
+    var deleteIcon = document.createElement("img");
+    deleteIcon.src ="delete.png"; // Provide the path to your delete icon image
+    deleteIcon.alt = "Delete";
+    deleteIcon.className = "delete-icon";
+    deleteIcon.onclick = function() {
+        listItem.remove();
+    };
+    listItem.appendChild(deleteIcon);
+
+    // Append the list item to the task list
+    document.getElementById("taskList").appendChild(listItem);
+}
+
+function displayTasks() {
+    var taskList = document.getElementById("taskList");
+    var listItems = taskList.getElementsByTagName("li");
+
+    // If there are no tasks, display a message
+    if (listItems.length === 0) {
+        alert("No tasks to display!");
+    } else {
+        // Display each task in an alert
+        var taskTexts = Array.from(listItems).map(function(item) {
+            return item.firstChild.textContent.trim();
+        });
+        alert("Task List:\n" + taskTexts.join("\n"));
+    }
+}
+
+
+    </script>
+</body>
+</html>

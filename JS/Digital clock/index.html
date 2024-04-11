@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Digital Clock</title>
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #282c34;
+    color: white;
+}
+
+.clock {
+    font-size: 4em;
+    font-family: 'Arial', sans-serif;
+}
+h1{
+    margin-top:20px;
+}
+
+    </style>
+</head>
+<body>
+    
+    <div class="clock">
+        <div id="time"></div>
+    </div>
+
+    <script>
+        function updateClock() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    var timeString = hours + ":" + minutes + ":" + seconds;
+
+    document.getElementById("time").innerHTML = timeString;
+}
+
+setInterval(updateClock, 1000); // Update every second
+
+    </script>
+</body>
+</html>

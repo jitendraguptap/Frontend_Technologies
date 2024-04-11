@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thumbnail Gallery</title>
+    <style>
+        /* Style for thumbnails */
+        .thumbnail {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Thumbnail Gallery -->
+<div>
+    <img class="thumbnail" src="videoediting.jpg" onclick="openImage('videoediting.jpg')" alt="Thumbnail 1">
+    
+   
+</div>
+
+<script>
+    // Function to open the image in a new tab
+    function openImage(imageSrc) {
+        window.open(imageSrc, '_blank');
+    }
+</script>
+
+</body>
+</html>

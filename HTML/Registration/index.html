@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            border-top: 4px double white;
+            border-bottom: 4px double white;
+            width: 50%;
+            height: auto;
+            border-radius: 20px;
+            padding-top: 10px;
+            padding-bottom: 20px;
+            text-align: center;
+            position: absolute;
+            display:flex;
+            flex-direction: column;
+        }
+        .head{
+            text-align: left;
+            color: white;
+        }
+        .inner{
+            display: flex;
+            justify-content: center;
+        }
+        table{
+            text-align:justify;
+            color: white;
+        }
+        td{
+            padding: 10px;
+        }
+        input[type="submit"],input[type="reset"]{
+            color: rgb(219, 65, 9);
+        }
+        .rightAlign{
+            text-align: right;
+        }
+
+        
+        
+    </style>
+</head>
+<body style="background-color: rgb(212, 69, 18);">
+    <div class="box">
+        <div class="head"><h1>Create Your Account</h1></div>
+        
+        <div class="inner">
+            <form>
+                <table>
+                    <tr>
+                        <td class="rightAlign"><label for="name">Enter the name :</label></td>
+                        <td><input type="text" name="name" id="name" placeholder="Enter user here" required></td>
+                    </tr>
+                    <tr>
+                        <td class="rightAlign"><label for="email">Enter Email Id :</label></td>
+                        <td><input type="email" name="email" id="email" placeholder="Enter email ID here" required></td>
+                    </tr>
+                    <tr>
+                        <td class="rightAlign"><label for="age">Age :</label></td>
+                        <td><input type="number" name="age" id="age" min="1" max="100" placeholder="Age" required></td>
+                    </tr>
+                    <tr>
+                        <td class="rightAlign"><label for="dob">Birthdate :</label></td>
+                        <td><input type="date" name="dob" id="dob" required></td>
+                    </tr>
+                    <tr>
+                        <td class="rightAlign"><label for="degree">Graduate in :</label></td>
+                        <td><select name="degree" id="degree" required> 
+                            <option value="Degree">Degree</option>
+                            <option value="BE">BE</option>
+                            <option value="B.Tech">B.Tech</option>
+                            <option value="BSC">BSC</option>
+                            <option value="B.Arch">B.Arch</option>
+                        </select></td>
+                    </tr>
+                    <tr>
+                        <td class="rightAlign"><label for="ph">Phone :</label></td>
+                        <td><input type="text" name="ph" id="ph" pattern="[7-9]+[0-9]{9}" placeholder="Phone"></td>
+                    </tr>
+                    <tr>
+                        <td class="rightAlign"><label for="user">Enter User Name :</label></td>
+                        <td><input type="text" name="user" id="user" placeholder="Enter username here" required></td>
+                    </tr>
+                    <tr>
+                        <td class="rightAlign"><label for="pwd">Enter Password :</label></td>
+                        <td><input type="password" name="pwd" id="pwd" placeholder="Enter password here" required></td>
+                    </tr>
+                    <tr>
+                        <td class="rightAlign"><label for="cpwd">Enter Confirm Password :</label></td>
+                        <td><input type="password" name="cpwd" id="cpwd" placeholder="Enter confirm password here" required></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="reset" value="Clear Form">&nbsp;<input type="submit" value="Create Account"></td>
+                    </tr>
+                </table>
+
+            </form>
+        </div>
+
+    </div>
+    
+</body>
+</html>

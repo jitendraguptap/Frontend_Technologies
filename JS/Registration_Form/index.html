@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0%;
+            background-color: black;
+            color: white;
+        }
+        form{
+            background-color: rgb(13, 12, 74);
+            width: 500px;
+            height: 600px;
+            text-align: center;
+            border-radius: 25px;
+            margin-left: 35%;
+            margin-top: 50px;
+            flex-direction: column;
+        }
+        .header{
+            padding: 10px;
+        }
+        .content{
+            width: 400px;
+            margin-left: 50px;
+            gap: 10px;
+            height: 300px;
+            padding: 10px;
+        }
+        .name{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            text-align: left;
+            font-size: 20px;
+        }
+        .pass{
+            
+            width: 100%;
+            text-align: left;
+            font-size: 20px;
+        }
+        .cnfpwd{
+            width: 100%;
+            text-align: left;
+            font-size: 20px;
+        }
+        .sex{
+            display: flex;
+            flex-direction: column;
+            width: 40%;
+            text-align: left;
+            font-size: 20px;
+        }
+        button{
+            width: 30%;
+
+        }
+        
+        input{
+            width: 50%;
+        }
+        input[type="submit"]{
+            width: 30%;
+            border-radius: 6px;
+            color: chocolate;
+            background-color: rgb(28, 33, 28);
+            height: 25px;
+            font-size: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <form onsubmit="return validate()" action="C:\Users\HP\OneDrive\Desktop\TalentciaGlobal\practice.html">
+        <div class="header">
+            <h1>Registration Form</h1>
+        </div>
+        <hr>
+        <div class="content">
+            <div class="name">
+                <label for="name">Name </label>
+                <input type="text" id="name" name="name" >
+            </div>
+            
+            <br>
+            <div class="pass">
+                <label for="pwd">Password</label><br>
+                <input type="password" id="pwd" name="pwd"> &nbsp;<button id="show" onclick="passShow()" ondblclick="passHide()">Show/Hide</button>
+                <p id="strenth"></p><br>
+            </div>
+            
+            
+            <div class="cnfpwd">
+                <label for="cpwd">Confirm Password</label><br>
+                <input type="password" id="cpwd" name="cpwd"><p id="cpwdc"></p>
+            </div>
+
+            <div class="sex">
+                <label for="sex">Sex</label>
+                <select id="sex" name="sex">
+                    <option value="">..Select..</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <br>
+            <br>
+
+            <input type="submit" value="Register">
+        </div>
+    </form>
+</body>
+<script>
+    function nameCheck(){
+        let name=document.getElementById("name").value;
+        let rex=/^[a-zA-Z]{4,50}$/;
+        if((name!="")&&(rex.test(name)))
+            return 1;
+        else
+            alert("Fill the name Properly");
+            onfocus="focus(name)"
+            return 0;
+    }
+
+
+    function pwdCheck(){
+        let s=document.getElementById("pwd").value;
+		let count=0, countU=0,countS=0,count_=0,countN=0;
+		if(s.length<8) {
+            alert("Password must contain 8 characters")
+			return "weak";
+		}
+        else{
+            for(let i=0;i<s.length;i++) {
+                if((s.charAt(i)>='a')&&(s.charAt(i)<='z')) {
+                    countS++;
+                }
+                else if((s.charAt(i)>='A')&&(s.charAt(i)<='Z')) {
+                    countU++;
+                }
+                else if((s.charAt(i)>='0')&&(s.charAt(i)<='9')) {
+                    countN++;
+                }else {
+                    count_++;
+                }
+            }
+            if(countU>0) {
+                count++;
+            }
+            if(countS>0) {
+                count++;
+            }
+            if(count_>0) {
+                count++;
+            }
+            if(countN>0) {
+                count++;
+            }
+            if(count==4)
+                return "Strong";
+            else if(count==3)
+                return "Good";
+            else if(count==2)
+                return "Medium";
+            else
+                return "Weak";
+        }
+	}
+    function passShow(){
+        document.getElementById("pwd").type="text";
+    }
+    function passHide(){
+        document.getElementById("pwd").type="password";
+    }
+    function checkConfirmPwd(){
+        let pwd=document.getElementById("pwd").value;
+        let cpwd=document.getElementById("cpwd").value;
+        if(pwd===cpwd){
+            document.getElementById("cpwdc").innerHTML="Password is matched";
+            return 1;
+        }
+        else{
+            document.getElementById("cpwdc").innerHTML="Please match the password";
+            alert("password should match with confirm password")
+            return 0;
+        }
+    }
+
+
+
+    function checkSex(){
+        let s=document.getElementById("sex").value;
+        if(s===""){
+            alert("please select Sex");
+            return 0;
+        }
+        return 1;
+            
+    }
+    function validate(){
+
+        let count=0;
+        
+        let name=nameCheck();
+        count=count+name;
+
+        console.log(count);
+
+        let password=pwdCheck();
+        if((password=="Strong")||(password=="Good")){
+            count+=1;
+            document.getElementById("strenth").innerHTML=password;
+        }
+        else{
+            alert("Password must be good or strong");
+            count+=0;
+            document.getElementById("strenth").innerHTML=password;
+        }
+
+        let cpwd=checkConfirmPwd();
+        count+=cpwd;
+
+        let sex=checkSex();
+        count+=sex;
+
+
+        console.log(count);
+        if(count==4){
+            return true;
+        }
+        return false;
+    }
+    
+
+</script>
+</html>

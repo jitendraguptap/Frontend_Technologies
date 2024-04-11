@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loan Application Form</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+<div id="ApplicationContainer">
+  <h2>Loan Application Form</h2>
+  <form id="loanForm" onsubmit="return validateForm()">
+    <!-- Personal Information -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" required><br/><br/>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required autocomplete="off"><br/><br/>
+
+    <label for="mobile">Mobile No (Ten Digits Only):</label>
+    <input type="tel" id="mobile" pattern="[0-9]{10}" required><br/><br/>
+
+    <label for="nationality">Nationality:</label>
+    <select id="nationality" required>
+      <option value="Indian">Indian</option>
+      <option value="Other">Other</option>
+    </select><br/><br/>
+
+    <label for="gender">Gender:</label>
+    <select id="gender" required>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select><br/><br/>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" required><br/><br/>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" required><br/><br/>
+
+    <label for="aadhar">Adhaar Card Number:</label>
+    <input type="text" id="aadhar" required><br/><br/>
+
+    <label for="address">Address:</label>
+    <textarea id="address" required></textarea><br/><br/>
+
+    <!-- Loan Information -->
+    <label for="loanType">Type of Loan:</label>
+    <select id="loanType" onchange="showLoanDetails()" required>
+      
+      <option value="PersonalLoan">Personal Loan</option>
+      <option value="HomeLoan">Home Loan</option>
+    </select><br/><br/>
+
+    <div id="personalLoanDetails">
+      <label for="companyName">Company Name:</label>
+      <input type="text" id="companyName" required><br/><br/>
+
+      <label for="workExperience">Total Work Experience (Years):</label>
+      <input type="number" id="workExperience" required><br/><br/>
+
+      <label for="annualSalary">Annual Salary:</label>
+      <input type="number" id="annualSalary" required><br/><br/>
+
+      <label for="existingEMI">Existing EMI Amount:</label>
+      <input type="number" id="existingEMI" required><br/><br/>
+
+      <label for="loanAmount">Loan Amount:</label>
+      <input type="number" id="loanAmount" required><br/><br/>
+
+      <label for="loanDuration">Duration in Months:</label>
+      <select id="loanDuration" required>
+        <option value="6" >6 months</option>
+        <option value="12">12 months</option>
+        <option value="24">24 months</option>
+        <option value="36">36 months</option>
+      </select>
+      <br/><br/>
+    </div>
+    
+
+    <div id="homeLoanDetails" style="display: none;">
+      <label for="propertySqft">Property Sqft:</label>
+      <input type="number" id="propertySqft" required>
+      <br/><br/>
+
+      <label for="builderName">Builder Name:</label>
+      <input type="text" id="builderName" required><br/><br/>
+
+      <label for="propertyValue">Property Value:</label>
+      <input type="number" id="propertyValue" required><br/><br/>
+
+      <label for="homeLoanAnnualSalary">Annual Salary:</label>
+      <input type="number" id="homeLoanAnnualSalary" required><br/><br/>
+
+      <label for="homeLoanAmount">Loan Amount:</label>
+      <input type="number" id="homeLoanAmount" required><br/><br/>
+
+      <label for="homeLoanDuration">Duration in Months:</label>
+      <select id="homeLoanDuration" required>
+        <option value="6">6 months</option>
+        <option value="12">12 months</option>
+        <option value="24">24 months</option>
+        <option value="36">36 months</option>
+      </select><br/><br/>
+    </div>
+
+    <button type="button" onclick="calculateEMI()">Calculate EMI</button>
+  </form>
+
+  <div id="result" style="display: none;">
+    <h3>EMI Calculation Result</h3>
+    <p id="emiResult"></p>
+  </div>
+</div>
+  <script>
+   function validateForm() {
+    var name = document.getElementById("name").value;
+    var mobile = document.getElementById("mobile").value;
+    var age = document.getElementById("age").value;
+    var dob = document.getElementById("dob").value;
+    var aadhar = document.getElementById("aadhar").value;
+    var email = document.getElementById("email").value;
+    
+
+    // Validate Name
+    if (name === "") {
+      alert("Please enter your name");
+      return false;
+    }
+
+    if (!email.includes("@")) {
+        alert("Email must contain the @ character.");
+            return false;
+            }
+
+    // Validate Mobile Number
+    if (mobile.length !== 10 || isNaN(mobile)) {
+      alert("Please enter a valid 10-digit mobile number");
+      return false;
+    }
+    
+
+    if(age!=calculateAge(dob)){
+      alert("Applicants date of birth and age should be match.");
+      return false;
+    }
+
+    // Validate Date of Birth
+    if (calculateAge(dob) < 18) {
+      alert("Applicants must be at least 18 years old.");
+      return false;
+    }
+
+    // Validate Age
+    if (age === "") {
+      alert("age field should not be empty");
+      return false;
+    }
+    //validate aadhar
+    if (aadhar.length !== 12 || isNaN(aadhar)) {
+      alert("Please enter a valid 12-digit Aadhaar number.");
+      return false;
+    }
+
+    return true; // Form is valid
+  } 
+  function showLoanDetails() {
+    if(validateForm()){
+    var loanType = document.getElementById("loanType").value;
+    var personalLoanDetails = document.getElementById("personalLoanDetails");
+    var homeLoanDetails = document.getElementById("homeLoanDetails");
+
+    if (loanType === "PersonalLoan") {
+      personalLoanDetails.style.display = "block";
+      homeLoanDetails.style.display = "none";
+    } else if (loanType === "HomeLoan") {
+      personalLoanDetails.style.display = "none";
+      homeLoanDetails.style.display = "block";
+    }
+  }
+}
+  function calculateEMI() {
+    if(validateForm()){
+    var loanType = document.getElementById("loanType").value;
+
+    if (loanType === "PersonalLoan") {
+      calculatePersonalLoanEMI();
+    } else if (loanType === "HomeLoan") {
+      calculateHomeLoanEMI();
+    }
+  }
+}
+
+  function calculatePersonalLoanEMI() {
+    var loanAmount = parseFloat(document.getElementById("loanAmount").value);
+    var annualInterestRate = 10; //for example consider 10%
+    var loanDuration = parseInt(document.getElementById("loanDuration").value);
+
+    var monthlyInterestRate = (annualInterestRate / 12) / 100;
+    var numberOfPayments = loanDuration;
+    var denominator = Math.pow((1 + monthlyInterestRate), numberOfPayments) - 1;
+
+    var emi = loanAmount * monthlyInterestRate * Math.pow((1 + monthlyInterestRate), numberOfPayments) / denominator;
+
+    displayEMIResult(emi);
+  }
+
+  function calculateHomeLoanEMI() {
+    var loanAmount = parseFloat(document.getElementById("homeLoanAmount").value);
+    var annualInterestRate = 8;  //for example consider 8%
+    var loanDuration = parseInt(document.getElementById("homeLoanDuration").value);
+
+    var monthlyInterestRate = (annualInterestRate / 12) / 100;
+    var numberOfPayments = loanDuration;
+    var denominator = Math.pow((1 + monthlyInterestRate), numberOfPayments) - 1;
+
+    var emi = loanAmount * monthlyInterestRate * Math.pow((1 + monthlyInterestRate), numberOfPayments) / denominator;
+
+    displayEMIResult(emi);
+  }
+
+  function displayEMIResult(emi) {
+    var resultDiv = document.getElementById("result");
+    var emiResult = document.getElementById("emiResult");
+
+    emiResult.textContent = "EMI: Rs." + emi.toFixed(2);
+    resultDiv.style.display = "block";
+  }
+  function calculateAge(dob) {
+    var today = new Date();
+    var birthDate = new Date(dob);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var monthDiff = today.getMonth() - birthDate.getMonth();
+
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+
+    return age;
+  }
+  
+  </script>
+</body>
+</html>

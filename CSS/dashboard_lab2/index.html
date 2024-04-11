@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <title>Dashboard</title>
+</head>
+<style>
+    #dashboard{
+        color:white;
+        background-color: grey;
+        margin-left: 10px;
+        margin-top: 10px;
+        
+    }
+    #cont{
+        margin-left: 10px;
+        top:200px;
+        width:70%;
+       
+        
+    }
+    #maindiv{
+        overflow-x:hidden;
+        overflow-y: hidden;
+        max-width:1000%;
+        overscroll-behavior: contain;
+
+    }
+    .list-group{
+        border:none;
+        color: blue;
+        font-weight: bold;
+    }
+    p{
+        top:20px;
+        margin-left:30px;
+        font-size: medium;
+        font-weight: bold;
+    }
+    #bl{
+        background-color:aliceblue;
+        height:600px;
+        width:500px;
+    }
+    a{
+        color :blue;
+    }
+    
+    
+</style>
+<body>
+<div id="maindiv">
+<div id="dashboard">
+    <h1 id="dashtext">Dashboard</h1>
+</div>
+<div class="container mt-2" id="cont" >
+  <div class="row">
+    <div id="bl">
+    <div class="col-md-7" id="con">
+      <div class="card">
+        <img src="profile1.jpg" class="card-img-top" alt="Profile Picture" style="height:170px">
+        <div class="card-body text-center">
+          <h5 class="card-title text-left" >Marcus Doe</h5>
+          <h5 class="text-left">Developer</h5>
+          <button type="button" class="btn btn-primary btn-Success float-left" style="background-color: green;">Follow</button>
+          <button type="button" class="btn btn-info btn-danger float-left " style="background-color: red; margin-left: 5px;">Message</button>
+        </div>
+        <div class="list-group border-0">
+          
+            <a href="#" class="list-group-item list-group-item-action border-0 text-primary"><i class="bi bi-house-door-fill fa-10x"></i>&nbsp;Overview</a>
+            <a href="#" class="list-group-item list-group-item-action border-0 text-primary "><i class="bi bi-person-fill fa-10x"></i>&nbsp;Account Settings</a>
+            <a href="#" class="list-group-item list-group-item-action border-0 text-primary"><i class="bi bi-check2 fa-10X"></i>&nbsp;Tasks</a>
+            <a href="#" class="list-group-item list-group-item-action border-0 text-primary"><i class="bi bi-flag-fill fa-10x"></i>&nbsp;Help</a>
+          
+          </div>
+      </div>
+    </div>
+    </div>
+
+
+      <div class="row">
+        
+          <!-- Content for each section goes here -->
+          
+          <p>Some user related content goes here...</p>
+        
+      
+    </div>
+</div>
+</div>
+</div>
+<div>
+  <p style="text-align: center;">Email-<span style="color:blue">Marcus@gmail.com</span></p>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
