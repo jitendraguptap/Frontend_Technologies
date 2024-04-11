@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Membership</title>
+    <!-- Add Tailwind CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Add Font Awesome CDN for icons -->
+    <script src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/js/all.min.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+        }
+    </style>
+</head>
+<body class="h-screen flex items-center justify-center">
+
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <h1 class="text-3xl font-bold mb-4 text-center text-gray-800">Upgrade to Premium</h1>
+        
+        <p class="text-gray-600 mb-4 text-center">
+            Enjoy exclusive benefits with our premium membership. Unlock premium features and enhance your experience.
+        </p>
+
+        <!-- Premium benefits list -->
+        <ul class="list-disc ml-6 text-gray-600 mb-4">
+            <li>Ad-free experience</li>
+            <li>Access to premium content</li>
+            <li>Priority customer support</li>
+            <!-- Add more benefits as needed -->
+        </ul>
+
+        <!-- Price and Buy button -->
+        <div class="flex items-center justify-between bg-gray-200 p-4 rounded-lg">
+            <span class="text-xl font-bold text-gray-800">$9.99/month</span>
+            <button class="bg-blue-500 text-white px-6 py-2 rounded-full">Buy Now</button>
+        </div>
+
+        <!-- Payment icons using Tailwind CSS and Font Awesome -->
+        <div class="flex items-center justify-center mt-4 space-x-4">
+            <i class="text-3xl text-blue-500 fab fa-cc-visa"></i>
+            <i class="text-3xl text-red-500 fab fa-cc-mastercard"></i>
+            <i class="text-3xl text-blue-700 fab fa-cc-paypal"></i>
+            <i class="text-3xl text-blue-300 fab fa-cc-amex"></i>
+            <i class="text-3xl text-yellow-500 fab fa-cc-discover"></i>
+            <i class="text-3xl text-green-500 fab fa-cc-apple-pay"></i>
+        </div>
+    </div>
+
+</body>
+</html>
